@@ -1,0 +1,12 @@
+{
+  "name": "@peassoft/sbsync",
+  "version": "0.0.0",
+  "description": "Simple Binary Sync",
+  "author": "Peassoft",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peassoft/sbsync.git"
+  },
+  "type": "module"
+}
