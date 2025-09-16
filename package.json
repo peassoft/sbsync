@@ -8,5 +8,15 @@
     "type": "git",
     "url": "git+https://github.com/peassoft/sbsync.git"
   },
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "test": "eslint ./ && npm run tsc",
+    "tsc": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@memnrev/eslint-v9-config": "^0.1.1",
+    "@total-typescript/ts-reset": "^0.6.1",
+    "eslint": "^9.35.0",
+    "typescript": "^5.9.2"
+  }
 }
