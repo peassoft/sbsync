@@ -10,13 +10,16 @@
   },
   "type": "module",
   "scripts": {
-    "test": "eslint ./ && npm run tsc",
-    "tsc": "tsc --noEmit"
+    "test": "npm run lint && npm run tsc && npm run unit-tests",
+    "lint": "eslint ./",
+    "tsc": "tsc --noEmit",
+    "unit-tests": "vitest run"
   },
   "devDependencies": {
     "@memnrev/eslint-v9-config": "^0.1.1",
     "@total-typescript/ts-reset": "^0.6.1",
     "eslint": "^9.35.0",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
   }
 }

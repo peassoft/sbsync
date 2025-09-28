@@ -28,21 +28,28 @@
 
 ### Supported Data Types
 
-- null (1);
-- Document (2);
-- Array (3). Arrays are documents with number keys (i.e. "0", "1", etc.);
+- Document (1);
+- Array (2);
+- null (3);
 - String (4). UTF-8 encoded;
 - Boolean (5);
-- Integer (6). int64;
-- Float64 (7).
+- Int8 (6);
+- Int16 (7);
+- Int32 (8);
+- Int64 (9);
+- Float64 (10).
+
+The value `undefined` is always serialized to the value `null`.
 
 
 ### Meta Data
 
+- Timestamp (8 bytes);
 - Protocol major version (1 byte);
 - Protocol minor version (1 byte);
-- Timestamp (8 bytes);
 - Length of Keys Dictionary (8 bytes);
+- Reserved (32 B);
+- Settings (16 B);
 
 
 ### Keys Dictionary
@@ -50,7 +57,7 @@
 ```
 +----------+----------+-------------------+----------+
 | ID       | Length   | Key name          | Length   |
-| (uint64) | (uint32) | (variable length) | (uint32) |
+| (uint64) | (uint16) | (variable length) | (uint16) |
 +----------+----------+-------------------+----------+
 ```
 
@@ -68,9 +75,11 @@ The second `length` field is needed for `O(log n)` lookup of a key by its `ID`.
 +----------+-----------+----------+-------------------+
 ```
 
+For the root object, `KeyId` == 0.
+
 For the `null` data type, the `Length` field contains value `0`, and the `Value` field is missing.
 
-For `Document` and `Array` data type, the `Length` field contains value `4`.
+For `Document` and `Array` data types, the `Length` field contains value `4`.
 
 For the `Document` data type, the field `Value` contains the actual number of properties (uint32).
 
@@ -115,3 +124,8 @@ For the `Boolean` data type, the field `Length` contains value `1`, and the `Val
 3. Filter out items with `isUsed == false` from the hash map of existing keys.
 
 4. Build the new binary.
+
+
+
+
+Decoding string values is fatal!!!
